@@ -78,3 +78,29 @@ unsigned int Max_len(unsigned int prv_max, char* str)
     else
         return len;
 }
+
+HESHCHAIR* addstruckchair(HESHCHAIR* strucktchar, char* now_str, unsigned int kod)
+{
+    HESHCHAIR* p = strucktchar;
+    if (strucktchar->kod == 0)
+    {
+        strucktchar->kod = kod;
+        int len = strlen(now_str);
+        strucktchar->word = (char*)malloc(sizeof(char) * len + 1);
+        strucktchar->word = strcpy(strucktchar->word, now_str);
+    }
+    else if (strucktchar->kod == kod)
+    {
+        while (strucktchar->pnext != 0)
+            strucktchar = strucktchar->pnext;
+        strucktchar->pnext = (HESHCHAIR*)calloc(1, sizeof(HESHCHAIR));
+        strucktchar = strucktchar->pnext;
+
+        strucktchar->kod = kod;
+        int len = strlen(now_str);
+        strucktchar->word = (char*)malloc(sizeof(char) * len + 1);
+        strucktchar->word = strcpy(strucktchar->word, now_str);
+    }
+ 
+    return p;
+}

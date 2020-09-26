@@ -9,4 +9,13 @@ typedef struct hesh
 	char* word;
 }HESH;
 
+
+typedef struct heshchair
+{
+	unsigned int kod;
+	char* word;
+	struct HESHCHAIR* pnext;
+
+}HESHCHAIR;
+
 #endif
