@@ -61,4 +61,20 @@ char* addstruck(char* now_str, int index, HESH struckt)
     return struckt.word;
 }
 
+int IsIn(HESH* mass, char* word)
+{
+    unsigned int kod = hesh_cod(word, 0);
+    if (mass[kod].kod == kod)
+        return 1;
+    else 
+        return 0;
+}
 
+unsigned int Max_len(unsigned int prv_max, char* str)
+{
+    unsigned int len = strlen(str);
+    if (prv_max > len)
+        return prv_max;
+    else
+        return len;
+}

@@ -29,20 +29,40 @@ int main(int argc, char* argv[])
 	fclose(fr);
 
 	char* cstr = strtok(res, " ,.-\n\r\t");
+	//char* cstr2 = strtok(res, " ,.-\n\r\t");
+	unsigned int max_word_len = 0;
+
 	unsigned int coliz = 0;
+	HESH* table = (HESH*)calloc(WORDS, sizeof(HESH));
 
 	while (cstr != 0)
 	{
+		max_word_len = Max_len(max_word_len, cstr);
 		unsigned int test = hesh_cod(cstr, 0);
-		HESH* table = (HESH*)calloc(WORDS, sizeof(HESH));
+		if (table[test].kod == test)
+			coliz++;
 		table[test].kod = test;
 		table[test].word = addstruck(cstr, test, table[test]);
-		printf("%d    %s\n", table[test].kod, table[test].word);
+		//printf("%d    %s\n", table[test].kod, table[test].word);
 		cstr = strtok(NULL, " ,.-\n\r\t");
 	}
-	
-	
+	printf("\nCloiz all = %d\n", coliz);
 
+
+	printf("\n\nInput Word for Finding\n\n");
+	char* find = (char*)malloc(sizeof(char) * max_word_len);
+	scanf("%s", find);
+
+	if (IsIn(table, find))
+		printf("\nYes!\n");
+	else 
+		printf("\nNo!\n");
+
+	free(table);
 	
+	coliz = 0;
+	//HESH* table = (HESH*)calloc(WORDS, sizeof(HESH));
+
+
 	return 0;
 }

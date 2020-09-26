@@ -1,5 +1,7 @@
 ﻿  test.cpp
-C:\Users\sobda\Documents\GitHub\heshcod\Hesh\Hesh\test.cpp(36,31): warning C4013: hesh_cod: нет определения; предполагается "extern" с возвратом типа "int"
-C:\Users\sobda\Documents\GitHub\heshcod\Hesh\Hesh\test.cpp(39,31): warning C4013: addstruck: нет определения; предполагается "extern" с возвратом типа "int"
-C:\Users\sobda\Documents\GitHub\heshcod\Hesh\Hesh\test.cpp(39,56): warning C4047: =: "char *" отличается по уровням косвенного обращения от "int"
+C:\Users\sobda\Documents\GitHub\heshcod\Hesh\Hesh\test.cpp(40,25): warning C4013: Max_len: нет определения; предполагается "extern" с возвратом типа "int"
+C:\Users\sobda\Documents\GitHub\heshcod\Hesh\Hesh\test.cpp(41,31): warning C4013: hesh_cod: нет определения; предполагается "extern" с возвратом типа "int"
+C:\Users\sobda\Documents\GitHub\heshcod\Hesh\Hesh\test.cpp(45,31): warning C4013: addstruck: нет определения; предполагается "extern" с возвратом типа "int"
+C:\Users\sobda\Documents\GitHub\heshcod\Hesh\Hesh\test.cpp(45,56): warning C4047: =: "char *" отличается по уровням косвенного обращения от "int"
+C:\Users\sobda\Documents\GitHub\heshcod\Hesh\Hesh\test.cpp(56,10): warning C4013: IsIn: нет определения; предполагается "extern" с возвратом типа "int"
   Hesh.vcxproj -> C:\Users\sobda\Documents\GitHub\heshcod\Hesh\Debug\Hesh.exe
