@@ -37,6 +37,7 @@ unsigned int simple_n(int n)
             }
         ++k;
     }
+    free(a);
     return p;
 }
 

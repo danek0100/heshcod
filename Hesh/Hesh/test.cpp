@@ -28,12 +28,21 @@ int main(int argc, char* argv[])
 	res[length] = '\0';
 	fclose(fr);
 
+	char* cstr = strtok(res, " ,.-\n\r\t");
+	unsigned int coliz = 0;
 
-	unsigned int test = hesh_cod(res, 0);
+	while (cstr != 0)
+	{
+		unsigned int test = hesh_cod(cstr, 0);
+		HESH* table = (HESH*)calloc(WORDS, sizeof(HESH));
+		table[test].kod = test;
+		table[test].word = addstruck(cstr, test, table[test]);
+		printf("%d    %s\n", table[test].kod, table[test].word);
+		cstr = strtok(NULL, " ,.-\n\r\t");
+	}
+	
+	
 
-	HESH* table = (HESH*)malloc(sizeof(HESH) * WORDS);
-	table[test].kod = test;
-	table[test].word = addstruck(res, test, table[test]);
-	printf("%d    %s", table[test].kod, table[test].word);
+	
 	return 0;
 }
