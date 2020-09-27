@@ -14,8 +14,14 @@ typedef struct heshchair
 {
 	unsigned int kod;
 	char* word;
+	unsigned int kol;
 	struct HESHCHAIR* pnext;
-
 }HESHCHAIR;
 
+typedef struct heshopen
+{
+	unsigned int kod;
+	char* word;
+	unsigned int kol;
+}HESHOPEN;
 #endif

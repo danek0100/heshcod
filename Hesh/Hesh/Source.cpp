@@ -5,7 +5,7 @@
 #include <malloc.h>
 #include <string.h>
 
-
+#define WORDS 1001
 
 
 unsigned int simple_n(int n)
@@ -47,9 +47,21 @@ unsigned int hesh_cod(char* word, int coliz)
 	int hesh = 0;
 	for (int i = 0; i < len; i++)
 	{
-		hesh += (((unsigned int)word[i] * simple_n(i)) % 500);
+		hesh += (((unsigned int)word[i] * simple_n(i)) % (WORDS / 2));
 	}
-    hesh %= 1000;
+    hesh %= WORDS;
+    return hesh;
+}
+
+unsigned int hesh_codk(char* word, unsigned int coli)
+{
+    int len = strlen(word);
+    int hesh = 0;
+    for (int i = 0; i < len; i++)
+    {
+        hesh += (((((unsigned int)word[i] * simple_n(i)) % (WORDS / 2)) + coli) * coli);
+    }
+    hesh %= WORDS;
     return hesh;
 }
 
@@ -64,7 +76,7 @@ char* addstruck(char* now_str, int index, HESH struckt)
 int IsIn(HESH* mass, char* word)
 {
     unsigned int kod = hesh_cod(word, 0);
-    if (mass[kod].kod == kod)
+    if (mass[kod].kod == kod && !strcmp(mass[kod].word, word))
         return 1;
     else 
         return 0;
@@ -79,28 +91,26 @@ unsigned int Max_len(unsigned int prv_max, char* str)
         return len;
 }
 
-HESHCHAIR* addstruckchair(HESHCHAIR* strucktchar, char* now_str, unsigned int kod)
-{
-    HESHCHAIR* p = strucktchar;
-    if (strucktchar->kod == 0)
-    {
-        strucktchar->kod = kod;
-        int len = strlen(now_str);
-        strucktchar->word = (char*)malloc(sizeof(char) * len + 1);
-        strucktchar->word = strcpy(strucktchar->word, now_str);
-    }
-    else if (strucktchar->kod == kod)
-    {
-        while (strucktchar->pnext != 0)
-            strucktchar = strucktchar->pnext;
-        strucktchar->pnext = (HESHCHAIR*)calloc(1, sizeof(HESHCHAIR));
-        strucktchar = strucktchar->pnext;
 
-        strucktchar->kod = kod;
-        int len = strlen(now_str);
-        strucktchar->word = (char*)malloc(sizeof(char) * len + 1);
-        strucktchar->word = strcpy(strucktchar->word, now_str);
+int IsInCh(HESHCHAIR* mass, char* word)
+{
+    unsigned int kod = hesh_cod(word, 0);
+
+    if (mass[kod].kod == kod && !strcmp(mass[kod].word, word))
+    {
+        printf("Yes! Word finded! Koliz = %d", mass[kod].kol);
+        return 1;
     }
- 
-    return p;
+    HESHCHAIR* chek = &mass[kod];
+    while (chek->pnext != 0)
+    {
+        if (chek->kod == kod && !strcmp(chek->word, word))
+        {
+            printf("Yes! Word finded! Koliz = %d", chek->kol);
+            return 1;
+        }
+        chek = chek->pnext;
+    }
+    printf("Word NOT finded!");
+    return 0;
 }

@@ -7,7 +7,7 @@
 #include <stdlib.h>
 
 #define SIZE 256
-#define WORDS 1000
+#define WORDS 1001
 
 
 int main(int argc, char* argv[])
@@ -35,6 +35,9 @@ int main(int argc, char* argv[])
 	unsigned int coliz = 0;
 	HESH* table = (HESH*)calloc(WORDS, sizeof(HESH));
 	HESHCHAIR* tablec = (HESHCHAIR*)calloc(WORDS, sizeof(HESHCHAIR));
+	HESHOPEN* tableo = (HESHOPEN*)calloc(WORDS, sizeof(HESHOPEN));
+
+	unsigned int ko;
 
 	while (cstr != 0)
 	{
@@ -49,27 +52,57 @@ int main(int argc, char* argv[])
 		table[test].kod = test;
 		table[test].word = addstruck(cstr, test, table[test]);
 
-		if (tablec[test].kod == 0)
 		{
-			tablec[test].kod = test;
-			int len = strlen(cstr);
-			tablec[test].word = (char*)malloc(sizeof(char) * len + 1);
-			tablec[test].word = strcpy(tablec[test].word, cstr);
-		}
-		else if (tablec[test].kod == test)
-		{
-			HESHCHAIR* chek = &tablec[test];
-			while (chek->pnext != 0)
+			if (tablec[test].kod == 0)
 			{
-				chek = chek->pnext;
+				tablec[test].kod = test;
+				int len = strlen(cstr);
+				tablec[test].word = (char*)malloc(sizeof(char) * len + 1);
+				tablec[test].word = strcpy(tablec[test].word, cstr);
 			}
-			HESHCHAIR* chek2 = (HESHCHAIR*)calloc(1, sizeof(HESHCHAIR));
-			chek2[0].kod = test;
-			int len = strlen(cstr);
-			chek2[0].word = (char*)malloc(sizeof(char) * len + 1);
-			chek2[0].word = strcpy(chek2[0].word, cstr);
-			chek->pnext = chek2;
+			else if (tablec[test].kod == test)
+			{
+				HESHCHAIR* chek = &tablec[test];
+				unsigned int koli = 1;
+				while (chek->pnext != 0)
+				{
+					chek = chek->pnext;
+					koli++;
+				}
+				HESHCHAIR* chek2 = (HESHCHAIR*)calloc(1, sizeof(HESHCHAIR));
+				chek2[0].kod = test;
+				chek2[0].kol = koli;
+				int len = strlen(cstr);
+				chek2[0].word = (char*)malloc(sizeof(char) * len + 1);
+				chek2[0].word = strcpy(chek2[0].word, cstr);
+				chek->pnext = chek2;
+			}
+		}
 
+		
+		if (tableo[test].kod == 0)
+		{
+			tableo[test].kod = test;
+			int len = strlen(cstr);
+			tableo[test].kol = 0;
+			tableo[test].word = (char*)malloc(sizeof(char) * len + 1);
+			tableo[test].word = strcpy(tableo[test].word, cstr);
+		}
+		else if (tableo[test].kod != 0)
+		{
+			ko = 0;
+			while ((tableo[test].kod != 0 || ko <= WORDS) && (test!= 0))
+			{
+				ko++;
+				test = hesh_codk(cstr, ko);
+				if (tableo[test].kod == 0 && test != 0)
+					break;
+			}
+			tableo[test].kod = test;
+			int len = strlen(cstr);
+			tableo[test].kol = ko;
+			tableo[test].word = (char*)malloc(sizeof(char) * len + 1);
+			tableo[test].word = strcpy(tableo[test].word, cstr);
 		}
 
 		//printf("%d    %s\n", table[test].kod, table[test].word);
@@ -77,6 +110,16 @@ int main(int argc, char* argv[])
 	}
 	printf("\nCloiz all = %d\n\n", coliz);
 
+	
+	for (int i = 0; i < WORDS; i++)
+	{
+		if (tableo[i].kod != 0)
+		{
+			printf("\n%d    %s (%d)  ", tableo[i].kod, tableo[i].word, tableo[i].kol);
+		}
+	}
+
+	/*
 	coliz = 0;
 	for (int i = 0; i < WORDS; i++)
 	{
@@ -91,6 +134,7 @@ int main(int argc, char* argv[])
 			}
 		}
 	}
+	*/
 
 	printf("\n\nInput Word for Finding\n\n");
 	char* find = (char*)malloc(sizeof(char) * max_word_len);
@@ -100,6 +144,9 @@ int main(int argc, char* argv[])
 		printf("\nYes!\n");
 	else 
 		printf("\nNo!\n");
+
+	IsInCh(tablec, find);
+
 
 	free(table);
 	free(tablec);
