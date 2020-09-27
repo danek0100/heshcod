@@ -57,12 +57,24 @@ unsigned int hesh_codk(char* word, unsigned int coli)
 {
     int len = strlen(word);
     int hesh = 0;
-    for (int i = 0; i < len; i++)
+    if (coli == 0)
     {
-        hesh += (((((unsigned int)word[i] * simple_n(i)) % (WORDS / 2)) + coli) * coli);
+        for (int i = 0; i < len; i++)
+        {
+            hesh += (((((unsigned int)word[i] * simple_n(i)) % (WORDS / 2))));
+        }
+        hesh %= WORDS;
+        return hesh;
     }
-    hesh %= WORDS;
-    return hesh;
+    if (coli != 0)
+    {
+        for (int i = 0; i < len; i++)
+        {
+            hesh += (((((unsigned int)word[i] * simple_n(i) + coli) * coli) % (WORDS / 2)));
+        }
+        hesh %= WORDS;
+        return hesh;
+    }
 }
 
 char* addstruck(char* now_str, int index, HESH struckt)
@@ -98,19 +110,45 @@ int IsInCh(HESHCHAIR* mass, char* word)
 
     if (mass[kod].kod == kod && !strcmp(mass[kod].word, word))
     {
-        printf("Yes! Word finded! Koliz = %d", mass[kod].kol);
+        printf("\nYes! Word finded! Koliz = %d\n", mass[kod].kol);
         return 1;
     }
     HESHCHAIR* chek = &mass[kod];
     while (chek->pnext != 0)
     {
+        chek = chek->pnext;
         if (chek->kod == kod && !strcmp(chek->word, word))
         {
-            printf("Yes! Word finded! Koliz = %d", chek->kol);
+            printf("\nYes! Word finded! Koliz = %d\n", chek->kol);
             return 1;
         }
-        chek = chek->pnext;
     }
-    printf("Word NOT finded!");
+    printf("\nWord NOT finded!\n");
+    return 0;
+}
+
+int IsInOp(HESHOPEN* mass, char* word, unsigned int mko)
+{
+    unsigned int kod = hesh_codk(word, 0);
+    if (mass[kod].kod == kod && !strcmp(mass[kod].word, word))
+    {
+        printf("\nYes! Word finded! Koliz = %d\n", 0);
+        return 1;
+    }
+    else
+    {
+        unsigned int ko = 1;
+        while (!(mass[kod].kod == kod && !strcmp(mass[kod].word, word)) || ko <= mko)
+        {
+            kod = hesh_codk(word, ko);
+            if (mass[kod].kod == kod && !strcmp(mass[kod].word, word))
+            {
+                printf("\nYes! Word finded! Koliz = %d\n", ko);
+                return 1;
+            }
+            ko++;
+        }
+    }
+    printf("\nWord NOT finded! Kol chek = %d\n", WORDS);
     return 0;
 }

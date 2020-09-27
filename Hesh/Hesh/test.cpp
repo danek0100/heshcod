@@ -38,6 +38,7 @@ int main(int argc, char* argv[])
 	HESHOPEN* tableo = (HESHOPEN*)calloc(WORDS, sizeof(HESHOPEN));
 
 	unsigned int ko;
+	unsigned int mko = 0;
 
 	while (cstr != 0)
 	{
@@ -53,7 +54,7 @@ int main(int argc, char* argv[])
 		table[test].word = addstruck(cstr, test, table[test]);
 
 		{
-			if (tablec[test].kod == 0)
+			if (tablec[test].word == 0)
 			{
 				tablec[test].kod = test;
 				int len = strlen(cstr);
@@ -80,7 +81,7 @@ int main(int argc, char* argv[])
 		}
 
 		
-		if (tableo[test].kod == 0)
+		if (tableo[test].word == 0)
 		{
 			tableo[test].kod = test;
 			int len = strlen(cstr);
@@ -88,23 +89,27 @@ int main(int argc, char* argv[])
 			tableo[test].word = (char*)malloc(sizeof(char) * len + 1);
 			tableo[test].word = strcpy(tableo[test].word, cstr);
 		}
-		else if (tableo[test].kod != 0)
+		else if (tableo[test].word != 0)
 		{
 			ko = 0;
-			while ((tableo[test].kod != 0 || ko <= WORDS) && (test!= 0))
+			while ((tableo[test].kod != 0 || ko <= WORDS))
 			{
 				ko++;
 				test = hesh_codk(cstr, ko);
-				if (tableo[test].kod == 0 && test != 0)
+				if (tableo[test].word == 0)
 					break;
 			}
+			if (ko > mko)
+				mko = ko;
+
 			tableo[test].kod = test;
 			int len = strlen(cstr);
 			tableo[test].kol = ko;
 			tableo[test].word = (char*)malloc(sizeof(char) * len + 1);
 			tableo[test].word = strcpy(tableo[test].word, cstr);
+			
 		}
-
+		
 		//printf("%d    %s\n", table[test].kod, table[test].word);
 		cstr = strtok(NULL, " ,.-\n\r\t");
 	}
@@ -113,17 +118,17 @@ int main(int argc, char* argv[])
 	
 	for (int i = 0; i < WORDS; i++)
 	{
-		if (tableo[i].kod != 0)
+		if (tableo[i].word != 0)
 		{
 			printf("\n%d    %s (%d)  ", tableo[i].kod, tableo[i].word, tableo[i].kol);
 		}
 	}
-
 	/*
+	
 	coliz = 0;
 	for (int i = 0; i < WORDS; i++)
 	{
-		if (tablec[i].kod != 0)
+		if (tablec[i].word != 0)
 		{
 			printf("\n%d    %s  ", table[i].kod, table[i].word);
 			HESHCHAIR* chek = &tablec[i];
@@ -146,14 +151,11 @@ int main(int argc, char* argv[])
 		printf("\nNo!\n");
 
 	IsInCh(tablec, find);
-
+	IsInOp(tableo, find, mko);
 
 	free(table);
 	free(tablec);
-
-	coliz = 0;
-	//HESH* table = (HESH*)calloc(WORDS, sizeof(HESH));
-
+	free(tableo);
 
 	return 0;
 }

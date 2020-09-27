@@ -1,14 +1,16 @@
 ﻿  Source.cpp
-C:\Users\sobda\Documents\GitHub\heshcod\Hesh\Hesh\Source.cpp(112,27): warning C4133: =: несовместимые типы - из "HESHCHAIR *" в "HESHCHAIR *"
+C:\Users\sobda\Documents\GitHub\heshcod\Hesh\Hesh\Source.cpp(119,27): warning C4133: =: несовместимые типы - из "HESHCHAIR *" в "HESHCHAIR *"
   test.cpp
-C:\Users\sobda\Documents\GitHub\heshcod\Hesh\Hesh\test.cpp(44,25): warning C4013: Max_len: нет определения; предполагается "extern" с возвратом типа "int"
-C:\Users\sobda\Documents\GitHub\heshcod\Hesh\Hesh\test.cpp(46,31): warning C4013: hesh_cod: нет определения; предполагается "extern" с возвратом типа "int"
-C:\Users\sobda\Documents\GitHub\heshcod\Hesh\Hesh\test.cpp(53,31): warning C4013: addstruck: нет определения; предполагается "extern" с возвратом типа "int"
-C:\Users\sobda\Documents\GitHub\heshcod\Hesh\Hesh\test.cpp(53,56): warning C4047: =: "char *" отличается по уровням косвенного обращения от "int"
-C:\Users\sobda\Documents\GitHub\heshcod\Hesh\Hesh\test.cpp(69,24): warning C4133: =: несовместимые типы - из "HESHCHAIR *" в "HESHCHAIR *"
-C:\Users\sobda\Documents\GitHub\heshcod\Hesh\Hesh\test.cpp(78,24): warning C4133: =: несовместимые типы - из "HESHCHAIR *" в "HESHCHAIR *"
-C:\Users\sobda\Documents\GitHub\heshcod\Hesh\Hesh\test.cpp(97,21): warning C4013: hesh_codk: нет определения; предполагается "extern" с возвратом типа "int"
-C:\Users\sobda\Documents\GitHub\heshcod\Hesh\Hesh\test.cpp(143,10): warning C4013: IsIn: нет определения; предполагается "extern" с возвратом типа "int"
-C:\Users\sobda\Documents\GitHub\heshcod\Hesh\Hesh\test.cpp(148,8): warning C4013: IsInCh: нет определения; предполагается "extern" с возвратом типа "int"
+C:\Users\sobda\Documents\GitHub\heshcod\Hesh\Hesh\test.cpp(45,25): warning C4013: Max_len: нет определения; предполагается "extern" с возвратом типа "int"
+C:\Users\sobda\Documents\GitHub\heshcod\Hesh\Hesh\test.cpp(47,31): warning C4013: hesh_cod: нет определения; предполагается "extern" с возвратом типа "int"
+C:\Users\sobda\Documents\GitHub\heshcod\Hesh\Hesh\test.cpp(54,31): warning C4013: addstruck: нет определения; предполагается "extern" с возвратом типа "int"
+C:\Users\sobda\Documents\GitHub\heshcod\Hesh\Hesh\test.cpp(54,56): warning C4047: =: "char *" отличается по уровням косвенного обращения от "int"
+C:\Users\sobda\Documents\GitHub\heshcod\Hesh\Hesh\test.cpp(70,24): warning C4133: =: несовместимые типы - из "HESHCHAIR *" в "HESHCHAIR *"
+C:\Users\sobda\Documents\GitHub\heshcod\Hesh\Hesh\test.cpp(79,24): warning C4133: =: несовместимые типы - из "HESHCHAIR *" в "HESHCHAIR *"
+C:\Users\sobda\Documents\GitHub\heshcod\Hesh\Hesh\test.cpp(98,21): warning C4013: hesh_codk: нет определения; предполагается "extern" с возвратом типа "int"
+C:\Users\sobda\Documents\GitHub\heshcod\Hesh\Hesh\test.cpp(148,10): warning C4013: IsIn: нет определения; предполагается "extern" с возвратом типа "int"
+C:\Users\sobda\Documents\GitHub\heshcod\Hesh\Hesh\test.cpp(153,8): warning C4013: IsInCh: нет определения; предполагается "extern" с возвратом типа "int"
+C:\Users\sobda\Documents\GitHub\heshcod\Hesh\Hesh\test.cpp(154,8): warning C4013: IsInOp: нет определения; предполагается "extern" с возвратом типа "int"
   Создание кода...
+C:\Users\sobda\Documents\GitHub\heshcod\Hesh\Hesh\Source.cpp(78): warning C4715: hesh_codk: значение возвращается не при всех путях выполнения
   Hesh.vcxproj -> C:\Users\sobda\Documents\GitHub\heshcod\Hesh\Debug\Hesh.exe
