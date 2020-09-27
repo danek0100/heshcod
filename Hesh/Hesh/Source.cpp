@@ -138,7 +138,7 @@ int IsInOp(HESHOPEN* mass, char* word, unsigned int mko)
     else
     {
         unsigned int ko = 1;
-        while (!(mass[kod].kod == kod && !strcmp(mass[kod].word, word)) || ko <= mko)
+        while (!(mass[kod].kod == kod && !strcmp(mass[kod].word, word)) && ko <= mko)
         {
             kod = hesh_codk(word, ko);
             if (mass[kod].kod == kod && !strcmp(mass[kod].word, word))

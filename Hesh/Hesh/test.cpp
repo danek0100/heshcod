@@ -6,6 +6,9 @@
 #include <string.h>
 #include <stdlib.h>
 
+#include <time.h>
+#include <windows.h>
+
 #define SIZE 256
 #define WORDS 1001
 
@@ -151,7 +154,15 @@ int main(int argc, char* argv[])
 		printf("\nNo!\n");
 
 	IsInCh(tablec, find);
+
+	clock_t currentTime;
+	clock_t currentTime2;
+	currentTime = clock();
 	IsInOp(tableo, find, mko);
+	currentTime2 = clock();
+	currentTime = clock() - currentTime;
+	currentTime = (double)currentTime / CLOCKS_PER_SEC;
+	printf("\nSeconds: %g\n", currentTime);
 
 	free(table);
 	free(tablec);
