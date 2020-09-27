@@ -148,18 +148,25 @@ int main(int argc, char* argv[])
 	char* find = (char*)malloc(sizeof(char) * max_word_len);
 	scanf("%s", find);
 
+	clock_t currentTime;
+	currentTime = clock();
 	if (IsIn(table, find))
 		printf("\nYes!\n");
 	else 
 		printf("\nNo!\n");
+	currentTime = clock() - currentTime;
+	currentTime = (double)currentTime / CLOCKS_PER_SEC;
+	printf("\nSeconds: %g\n", currentTime);
 
+	currentTime = clock();
 	IsInCh(tablec, find);
+	currentTime = clock() - currentTime;
+	currentTime = (double)currentTime / CLOCKS_PER_SEC;
+	printf("\nSeconds: %g\n", currentTime);
 
-	clock_t currentTime;
-	clock_t currentTime2;
+
 	currentTime = clock();
 	IsInOp(tableo, find, mko);
-	currentTime2 = clock();
 	currentTime = clock() - currentTime;
 	currentTime = (double)currentTime / CLOCKS_PER_SEC;
 	printf("\nSeconds: %g\n", currentTime);
