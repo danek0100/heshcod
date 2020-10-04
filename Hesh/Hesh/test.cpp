@@ -10,7 +10,7 @@
 #include <windows.h>
 
 #define SIZE 256
-#define WORDS 1001
+#define WORDS 1000000
 
 
 int main(int argc, char* argv[])
@@ -118,7 +118,7 @@ int main(int argc, char* argv[])
 	}
 	printf("\nCloiz all = %d\n\n", coliz);
 
-	
+	/*
 	for (int i = 0; i < WORDS; i++)
 	{
 		if (tableo[i].word != 0)
@@ -126,8 +126,9 @@ int main(int argc, char* argv[])
 			printf("\n%d    %s (%d)  ", tableo[i].kod, tableo[i].word, tableo[i].kol);
 		}
 	}
-	/*
+	*/
 	
+	/*
 	coliz = 0;
 	for (int i = 0; i < WORDS; i++)
 	{
@@ -149,14 +150,14 @@ int main(int argc, char* argv[])
 	scanf("%s", find);
 
 	clock_t currentTime;
-	currentTime = clock();
-	if (IsIn(table, find))
-		printf("\nYes!\n");
-	else 
-		printf("\nNo!\n");
-	currentTime = clock() - currentTime;
-	currentTime = (double)currentTime / CLOCKS_PER_SEC;
-	printf("\nSeconds: %g\n", currentTime);
+	//currentTime = clock();
+	//if (IsIn(table, find))
+		//printf("\nYes!\n");
+	//else 
+		//printf("\nNo!\n");
+	//currentTime = clock() - currentTime;
+	//currentTime = (double)currentTime / CLOCKS_PER_SEC;
+	//printf("\nSeconds: %g\n", currentTime);
 
 	currentTime = clock();
 	IsInCh(tablec, find);

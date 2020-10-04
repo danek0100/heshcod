@@ -5,7 +5,7 @@
 #include <malloc.h>
 #include <string.h>
 
-#define WORDS 1001
+#define WORDS 1000000
 
 
 unsigned int simple_n(int n)
@@ -47,7 +47,9 @@ unsigned int hesh_cod(char* word, int coliz)
 	int hesh = 0;
 	for (int i = 0; i < len; i++)
 	{
-		hesh += (((unsigned int)word[i] * simple_n(i)) % (WORDS / 2));
+		//hesh += (((unsigned int)word[i] * simple_n(i)) % (WORDS / 2));
+        //hesh += (((unsigned int)word[i] * 5) % (WORDS / 2));
+        hesh += (((((unsigned int)word[i] * (3 * i) % (WORDS / 2)))));
 	}
     hesh %= WORDS;
     return hesh;
@@ -61,7 +63,9 @@ unsigned int hesh_codk(char* word, unsigned int coli)
     {
         for (int i = 0; i < len; i++)
         {
-            hesh += (((((unsigned int)word[i] * simple_n(i)) % (WORDS / 2))));
+            //hesh += (((((unsigned int)word[i] * simple_n(i)) % (WORDS / 2))));
+           // hesh += (((((unsigned int)word[i] * 5) % (WORDS / 2))));
+            hesh += (((((unsigned int)word[i] * (3 * i) % (WORDS / 2)))));
         }
         hesh %= WORDS;
         return hesh;
@@ -70,7 +74,9 @@ unsigned int hesh_codk(char* word, unsigned int coli)
     {
         for (int i = 0; i < len; i++)
         {
-            hesh += (((((unsigned int)word[i] * simple_n(i) + coli) * coli) % (WORDS / 2)));
+            //hesh += (((((unsigned int)word[i] * simple_n(i) + coli) * coli) % (WORDS / 2)));
+            //hesh += (((((unsigned int)word[i] * 5 + coli) * coli) % (WORDS / 2)));
+            hesh += ((((((unsigned int)word[i] * (3 * i) + coli) * coli) % (WORDS / 2))));
         }
         hesh %= WORDS;
         return hesh;
